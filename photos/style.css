@@ -113,3 +113,100 @@ ul { list-style: none; }
 
 .fade-in { opacity:0; transform: translateY(8px); transition: opacity 0.4s ease-out, transform 0.4s ease-out; }
 .fade-in.is-visible { opacity:1; transform: translateY(0); }
+
+/* --- EXTRA ANIMÁCIÓK ÉS HOVER EFFEKTEK --- */
+
+/* Lépcsőzetes (staggered) fade-in */
+.stagger-1 { transition-delay: 100ms; }
+.stagger-2 { transition-delay: 200ms; }
+.stagger-3 { transition-delay: 300ms; }
+.stagger-4 { transition-delay: 400ms; }
+
+/* Modern Card Hover: finom emelkedés és árnyék */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* Kártya bal oldali szín-csík hoverre (modern design elem) */
+.card-hover::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--color-primary);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+  transform-origin: bottom;
+}
+.card-hover:hover::before {
+  transform: scaleY(1);
+}
+
+/* Telepítési lépések (Process list) */
+.process-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.process-list li {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+.process-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 28px;
+  height: 28px;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.process-list h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+  color: var(--color-text);
+}
+.process-list p {
+  font-size: 0.92rem;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+/* Nagyobb Grid a szolgáltatás szövegéhez */
+.service-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .service-grid { grid-template-columns: 1fr; }
+}
+
+/* Információs dobozok a szövegbe ékelve */
+.info-box {
+  background: #f8fafc;
+  border-left: 4px solid var(--color-primary);
+  padding: 1.2rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  color: #334155;
+}
