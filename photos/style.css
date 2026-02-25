@@ -210,3 +210,26 @@ ul { list-style: none; }
   font-size: 0.95rem;
   color: #334155;
 }
+
+/* Kártyákba ágyazott képek - Faltól falig (Full Width) */
+.card-image {
+  /* 
+     A card-nak 1.5rem paddingja van két oldalt. 
+     Tehát a szélesség = 100% + 1.5rem (bal) + 1.5rem (jobb) = 3rem.
+  */
+  width: calc(100% + 3rem); 
+  height: 240px;
+  object-fit: cover;
+  
+  
+  margin-top: -1.4rem;
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  margin-bottom: 1.5rem; 
+
+  
+  border-radius: 1rem 1rem 0 0; 
+  display: block;
+  max-width: none; 
+}
+
