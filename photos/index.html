@@ -36,26 +36,145 @@
 
 <main class="main">
 
-  <section class="section">
-    <div class="container hero fade-in">
+  <!-- HERO SZEKCIÓ: Balra szöveg, jobbra egy szép nagy kép -->
+  <section class="section" style="padding-top: 5rem; padding-bottom: 5rem;background: #def1fc9b;">
+    <div class="container hero fade-in stagger-1">
       <div class="hero-copy">
-        <div class="hero-kicker">Klímaszerelés &amp; karbantartás</div>
-        <h1 class="hero-title">Modern, megbízható <span>klímamegoldások</span> az egész szezonra.</h1>
-        <p class="hero-lead"></p>
+        <div class="hero-kicker">Energiahatékony és környezetbarát klímamegoldások</div>
+        <h1 class="hero-title">
+          Modern klímaberendezések <span>kényelmes és gazdaságos</span> otthonokhoz.
+        </h1>
+        <p class="hero-lead">
+          Jövőnk szempontjából az optimalizált energiafelhasználás és a környezetvédelem
+          kiemelt jelentőséggel bír. A modern klímák energiahatékony és környezetbarát 
+          működésükkel nem csak hűtenek, hanem télen gazdaságos fűtést is biztosítanak.
+        </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="kapcsolat.html">Ajánlatkérés</a>
-          <a class="btn btn-ghost" href="klima-karbantartas-tisztitas.html">Árak áttekintése</a>
+          <a class="btn btn-primary" href="kapcsolat.html">Ajánlatot kérek</a>
+          <a class="btn btn-ghost" href="#szolgaltatasok">Szolgáltatások</a>
         </div>
       </div>
-      <aside>
-        <div class="hero-card">
-          <p>Tapasztalt szerelők, átlátható árazás és gondos utógondozás minden projekt esetén.</p>
-        </div>
+
+      <aside class="hero-image-wrapper">
+        <!-- Itt a ChatGPT által generált képek egyike tökéletes egy látványos Hero elemnek -->
+        <img src="photos/ae9e9aab-e020-4c5e-8f88-bb64c6cb4b5b.png" alt="Modern klíma" class="hero-image modern-shadow" />
       </aside>
     </div>
   </section>
 
+  <!-- BEMUTATKOZÓ / ELŐNYÖK (Kép + Szöveg grid) -->
+  <section class="section fade-in stagger-2" style="background: #ffffff; padding: 5rem 1.25rem;">
+    <div class="container service-grid">
+      <!-- Bal oldalon egy látványos kép a munkáról/klímáról -->
+      <div class="feature-image-container">
+        <img src="photos/3.png" alt="Klímatelepítés" class="feature-image modern-shadow" />
+        <div class="floating-badge">
+          <strong>100%</strong><br>Megbízhatóság
+        </div>
+      </div>
+
+      <!-- Jobb oldalon a szöveg -->
+      <div style="align-self: center;">
+        <div class="section-heading">
+          <div class="section-kicker">Miért válassz minket?</div>
+          <h2 class="section-title">Szakértelem, precizitás, rövid határidő</h2>
+          <p class="section-subtitle">
+            Szolgáltatásainkat garantáltan magas színvonalon, versenyképes áron és 
+            környezetbarát anyagokkal végezzük.
+          </p>
+        </div>
+
+        <ul class="process-list">
+          <li>
+            <h3>Kimagasló szakmai ismeret, tapasztalat</h3>
+            <p>Mérnöki precizitással megtervezett, átgondolt rendszerek.</p>
+          </li>
+          <li>
+            <h3>Rugalmas időpontok</h3>
+            <p>Akár hétvégi, esti munkavégzés is, a te időbeosztásodhoz igazodva.</p>
+          </li>
+          <li>
+            <h3>Környezetbarát tisztítás</h3>
+            <p>Gondosan kiválasztott, az egészségre és környezetre ártalmatlan eljárásokkal dolgozunk.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SZOLGÁLTATÁSOK KÁRTYÁK -->
+  <section id="szolgaltatasok" class="section fade-in stagger-3" style="padding: 5rem 1.25rem;background: #def1fc9b;">
+    <div class="container">
+      <div class="section-heading" style="text-align: center;">
+        <div class="section-kicker">Szolgáltatások</div>
+        <h2 class="section-title">Teljes körű klímamegoldások</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">
+          A felméréstől a kivitelezésen át a rendszeres karbantartásig mindenben segítünk.
+        </p>
+      </div>
+
+      <div class="grid grid-2">
+        <!-- Klíma telepítés kártya -->
+        <article class="card card-hover">
+          <img src="photos/2.png" alt="Klíma telepítés" class="card-image">
+          <div class="card-content">
+            <h3>Klíma telepítés</h3>
+            <p>
+              A telepített klímaberendezések mindegyike a legmagasabb minőségi szabványoknak felel meg. 
+              Alacsony fogyasztásukkal és zajszintükkel kényelmes és hatékony hűtést-fűtést biztosítanak.
+            </p>
+            <div style="margin-top:1.5rem;">
+              <a class="btn btn-primary" href="klima-telepites.html">Részletek</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Klíma karbantartás kártya -->
+        <article class="card card-hover">
+          <img src="photos/1.png" alt="Klíma karbantartás" class="card-image">
+          <div class="card-content">
+            <h3>Klíma karbantartás, tisztítás</h3>
+            <p>
+              A rendszeres karbantartással minimalizálhatóak a meghibásodások esélyei, 
+              ezzel időt és pénzt takarítva meg. A garancia érvényesítésének is ez a feltétele.
+            </p>
+            <div style="margin-top:1.5rem;">
+              <a class="btn btn-primary" href="klima-karbantartas-tisztitas.html">Részletek</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- KAPCSOLAT BLOKK CTA -->
+  <section class="section fade-in stagger-4" style="padding-bottom: 5rem;">
+    <div class="container">
+      <div class="card cta-card">
+        <div class="cta-content">
+          <h2 class="section-title" style="color: white;">Lépj velem kapcsolatba</h2>
+          <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
+            Kérdésed van, ajánlatot szeretnél kérni, vagy bizonytalan vagy abban,
+            milyen megoldás lenne a legjobb az otthonodba?
+          </p>
+          
+          <div class="contact-info-large">
+            <p class="name">Vajda Roland</p>
+            <p class="phone"><a href="tel:+36206106950">📞 +36 20 610 6950</a></p>
+            <p class="mail"><a href="mailto:info@klimamed.hu">✉️ info@klimamed.hu</a></p>
+          </div>
+        </div>
+        
+        <div class="cta-action">
+          <a class="btn btn-primary btn-large" href="kapcsolat.html" style="background: white; color: var(--color-primary);">Ajánlatot kérek</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
+
+
 
 <footer class="footer">
   <div class="footer-inner">
