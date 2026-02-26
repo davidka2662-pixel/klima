@@ -1,14 +1,23 @@
 (function() {
-  // --- EREDETI: Mobil menü nyitó ---
+  // --- MOBIL MENÜ KEZELÉS ---
   var navToggle = document.querySelector('.nav-toggle');
   var navLinks = document.querySelector('.nav-links');
+  
   if (navToggle && navLinks) {
+    // Menü nyitása / zárása kattintásra
     navToggle.addEventListener('click', function() {
       navLinks.classList.toggle('is-open');
     });
+
+    // Menü automatikus zárása görgetéskor
+    window.addEventListener('scroll', function() {
+      if (navLinks.classList.contains('is-open')) {
+        navLinks.classList.remove('is-open');
+      }
+    }, { passive: true });
   }
 
-  // --- EREDETI: Finom beúszó animációk scrollra ---
+  // --- FINOM BEÚSZÓ ANIMÁCIÓK SCROLLRA ---
   var els = document.querySelectorAll('.fade-in');
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries) {
@@ -24,7 +33,7 @@
     els.forEach(function(el) { el.classList.add('is-visible'); });
   }
 
-  // --- ÚJ: Irányérzékeny (Direction-Aware) Sticky Logika (Vajpuha 60FPS) ---
+  // --- IRÁNYÉRZÉKENY (DIRECTION-AWARE) STICKY LOGIKA ---
   var container = document.getElementById("smart-sticky-container");
   var card = document.getElementById("smart-sticky-card");
 
@@ -35,7 +44,7 @@
     card.style.position = "absolute";
     card.style.width = "100%";
     // FONTOS: Töröltük a CSS transitiont! A mozgás azonnali lesz, a smoothságot a requestAnimationFrame adja
-    card.style.willChange = "transform"; // Szólunk a böngészőnek, hogy ez sokat fog mozogni (GPU gyorsítás)
+    card.style.willChange = "transform"; 
 
     var lastScrollY = window.scrollY;
     var currentOffset = 0; 
@@ -72,7 +81,7 @@
       currentOffset = Math.max(0, Math.min(currentOffset, maxOffset));
 
       // Mozgás alkalmazása
-      card.style.transform = "translate3d(0, " + currentOffset + "px, 0)"; // A translate3d kikényszeríti a hardveres gyorsítást
+      card.style.transform = "translate3d(0, " + currentOffset + "px, 0)"; 
       
       lastScrollY = scrollY;
       
@@ -81,12 +90,11 @@
     }
 
     window.addEventListener("scroll", function() {
-      // Csak akkor kérünk új képkockát, ha az előző már lefutott (megakadályozza a torlódást)
+      // Csak akkor kérünk új képkockát, ha az előző már lefutott
       if (!ticking) {
         window.requestAnimationFrame(updateCardPosition);
         ticking = true;
       }
-    }, { passive: true }); // A passive: true jelzi a böngészőnek, hogy nem blokkoljuk a görgetést
+    }, { passive: true }); 
   }
-
 })();

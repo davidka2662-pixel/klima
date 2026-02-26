@@ -1,4 +1,3 @@
-
 :root {
   --color-primary: #0b7ac4;
   --color-accent: #1ac6ff;
@@ -6,6 +5,7 @@
   --color-text: #111827;
   --color-muted: #6b7280;
   --color-surface: #ffffff;
+  --header-h: 80px; /* Hozzáadva a fix fejléc magasság */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,15 +19,14 @@ ul { list-style: none; }
 .header { 
   position: sticky; 
   top: 0; 
-  z-index: 50; 
+  z-index: 100; /* Növelt z-index, hogy biztosan legfelül legyen */
   background: #c8eaef7f;  
   backdrop-filter: blur(12px); 
-  -webkit-backdrop-filter: blur(12px); /* Apple eszközök támogatása */
+  -webkit-backdrop-filter: blur(12px); 
   border-bottom: 1px solid rgba(148,163,184,0.25); 
-  display: block; /* A 'fle' elírás javítva */
+  display: block; 
 }
 
-/* Fejléc belső konténere */
 .nav-inner {
   position: relative; 
   width: 100%;
@@ -36,15 +35,8 @@ ul { list-style: none; }
   padding: 0 2rem;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* A logó balra, a hamburger menü jobbra kerül */
-  height: 80px; /* Profi, fix magasság a fejlécnek */
-}
-
-/* Mobil nézeten középre kell zárni a logót */
-@media (max-width: 768px) {
-  .nav-inner {
-    justify-content: center; /* Logó középre megy */
-  }
+  justify-content: space-between; 
+  height: var(--header-h); 
 }
 
 /* 1. Logó (Balra) */
@@ -54,31 +46,31 @@ ul { list-style: none; }
   gap: 0.6rem; 
   font-weight: 600; 
   font-size: 1.05rem;
-  z-index: 60; /* Mobilon is a menü fölött marad */
+  z-index: 110; 
 }
 
 .brand-logo {
-  height: 60px;
+  /* Engedjük nagyobbra nőni asztali nézetben scale nélkül! */
+  height: 180px; 
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.15s ease; /* Transform helyett csak átlátszóság animáció */
-}
-
-.brand-logo:active {
-  opacity: 0.6;
+  /* Fontos: eltoljuk egy picit balra, ha az alap képeden túl sok az üres hely bal oldalon */
+  margin-left: -20px; 
 }
 
 .brand-logo img {
   height: 100%;
   width: auto;
-  max-width: 200px; /* Biztonsági limit, hogy ne nyúljon el */
+  /* Engedjük szélesebbre a képet */
+  max-width: 350px; 
   object-fit: contain;
 }
 
+
 .brand span { color: var(--color-primary); }
 
-/* 2. Menüpontok KONTÉNERE (Középen) */
+/* 2. Menüpontok (Középen asztali gépen) */
 .nav-links {
   position: absolute;
   left: 50%;
@@ -92,7 +84,6 @@ ul { list-style: none; }
   gap: 1.5rem;
 }
 
-/* 3. Maguk a MENÜPONTOK (A linkek) */
 .nav-links a {
   display: inline-block; 
   position: relative;
@@ -102,6 +93,7 @@ ul { list-style: none; }
   margin: 0 1rem; 
   padding-bottom: 4px;
   white-space: nowrap; 
+  -webkit-tap-highlight-color: transparent;
 }
 
 .nav-links a::after { 
@@ -117,33 +109,16 @@ ul { list-style: none; }
 
 .nav-links a:hover::after, .nav-links a.is-active::after { width: 100%; }
 
-/* Mobil menü (Hamburger) gomb */
-.nav-toggle { 
-  display: none; 
-  border: none; 
-  background: none; 
-  cursor: pointer; 
-  padding: 0.25rem; 
-  z-index: 60; 
-}
-.nav-toggle span { 
-  width: 22px; 
-  height: 2px; 
-  background: #111827; 
-  display: block; 
-  margin: 4px 0; 
-  transition: 0.2s; 
-}
-
+/* 3. Fejléc Elérhetőségek (Jobbra) */
 .header-contact {
   display: flex;
-  flex-direction: column; /* Egymás alá pakolja a sorokat */
-  align-items: flex-end;  /* Jobbra rendezi a szöveget */
+  flex-direction: column; 
+  align-items: flex-end;  
   justify-content: center;
-  gap: 2px;               /* Pici térköz, hogy szuper kompakt maradjon */
-  font-size: 0.8rem;      /* Diszkrét méret */
-  line-height: 1.2;       /* Szűkített sormagasság a helytakarékosságért */
-  z-index: 60;
+  gap: 2px;               
+  font-size: 0.8rem;      
+  line-height: 1.2;       
+  z-index: 110;
   white-space: nowrap;
 }
 
@@ -161,18 +136,30 @@ ul { list-style: none; }
 }
 
 .hc-phone:hover, .hc-mail:hover {
-  color: var(--color-primary); /* Kék lesz, ha ráviszed az egeret */
+  color: var(--color-primary); 
 }
 
-/* 950px alatt (tablet és mobil) rejtjük el, így biztosan nem csúszik rá a menüre */
-@media (max-width: 950px) {
-  .header-contact {
-    display: none;
-  }
+/* 4. Mobil menü (Hamburger) gomb */
+.nav-toggle { 
+  display: none; 
+  border: none; 
+  background: none; 
+  cursor: pointer; 
+  padding: 0.25rem; 
+  z-index: 120; 
+  margin-left: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-toggle span { 
+  width: 22px; 
+  height: 2px; 
+  background: #111827; 
+  display: block; 
+  margin: 4px 0; 
+  transition: 0.2s; 
 }
 
-
-/* --- RESZPONZÍV NÉZETEK --- */
+/* --- RESZPONZÍV NÉZETEK FEJLÉC --- */
 
 /* Kisebb asztali gépek (pl. laptop) */
 @media (max-width: 1200px) {
@@ -181,8 +168,11 @@ ul { list-style: none; }
   }
 }
 
-/* Tabletek (Amikor már nem fér be középre a menü) */
+/* Tabletek (Elérhetőség elrejtése, menü ne csússzon rá) */
 @media (max-width: 950px) {
+  .header-contact {
+    display: none;
+  }
   .nav-links {
     position: static;
     transform: none;
@@ -191,37 +181,54 @@ ul { list-style: none; }
   }
 }
 
+/* MOBIL NÉZET (Hamburger, logó középen, menü lenyílik) */
 @media (max-width: 768px) {
   .brand {
-    /* Kis helyigazítás, hogy tényleg középen legyen */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
   
+  /* MOBILON VISSZAVESSZÜK A MÉRETÉT, HOGY NE CSÚSSZON EL */
+  .brand-logo {
+    height: 140px; 
+    margin-left: 0; 
+  }
+  
+  .brand-logo img {
+    max-width: 220px; /* Mobilon a max szélességet is korlátozzuk */
+  }
+  
+  /* ... a többi marad változatlan (nav-toggle, nav-links stb.) ... */
+
+  
   .nav-toggle { 
     display: block; 
     position: absolute;
-    right: 1.5rem; /* Mindig a jobb szélen marad */
+    right: 1.25rem; 
+    top: 50%;
+    transform: translateY(-50%);
   }
   
-  .nav-links { 
-    position: fixed; 
-    /* A 80px a fejléc magassága, ide tolunk egy kis plusz helyet (100px), 
-       hogy ne a fejlécből induljon rögtön a legelső menüpont */
-    inset: 90px 0 auto 0; 
-    background: rgba(255,255,255,0.98); 
+    .nav-links { 
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    right: 0;
+    background: #c8eaef;   
     flex-direction: column; 
-    padding: 1.5rem 1.5rem 2.5rem; /* Alul hagyunk több helyet */
-    transform: translateY(-120%); 
+    /* A padding lecsökkentve: felső, jobb/bal, alsó */
+    padding: 1rem 1.5rem 1.25rem; 
+    transform: translateY(-1px); 
     opacity: 0; 
     pointer-events: none; 
-    transition: 0.3s ease-out; 
+    transition: 0.4s ease-out; 
     border-top: 1px solid rgba(148,163,184,0.25);
     border-bottom: 1px solid rgba(148,163,184,0.25);
     margin: 0;
     width: 100%;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05); /* Kicsi árnyék a menü alá */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+    z-index: 90; 
   }
   
   .nav-links.is-open { 
@@ -231,51 +238,16 @@ ul { list-style: none; }
   }
   
   .nav-links a { 
-    margin: 1rem 0; /* Nagyobb szünet a menüpontok között */
-    font-size: 1.2rem; /* Picit nagyobb betűk mobilon a könnyebb kattintásért */
+    /* Kisebb térköz a menüpontok között */
+    margin: 0.5rem 0; 
+    font-size: 1.15rem; 
     width: 100%;
-    text-align: center; /* Középre igazított menüpontok mobilon */
+    text-align: center; 
+    padding: 0.4rem 0;
   }
 }
-/* Innentől jön a .main { min-height: ... } rész a meglévő kódodban */
 
-
-
-.brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 1.05rem; }
-.brand-logo {
-  width: 52px;
-  height: 54px;
-  border-radius: 999px;
-  overflow: hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size: 0.9rem;
-
-  transform: scale(4);
-  transform-origin: left center;
-
-}
-
-.brand-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.brand span { color: var(--color-primary); }
-.nav-links { display: flex; align-items: center; gap: 1.5rem; font-size: 0.95rem; }
-.nav-links a { position: relative; padding-bottom: 2px; color: #111827; }
-.nav-links a::after { content: ''; position: absolute; left: 0; bottom: 0; width: 0; height: 2px; background: var(--color-primary); transition: width 0.2s ease-out; }
-.nav-links a:hover::after, .nav-links a.is-active::after { width: 100%; }
-.nav-toggle { display:none; border:none; background:none; cursor:pointer; padding:0.25rem; }
-.nav-toggle span { width:22px; height:2px; background:#111827; display:block; margin:4px 0; transition:0.2s; }
-
-@media (max-width: 768px) {
-  .nav-links { position: fixed; inset: 56px 0 auto 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 0.75rem 1.25rem 1.25rem; transform: translateY(-120%); opacity: 0; pointer-events: none; transition: 0.22s ease-out; border-bottom: 1px solid rgba(148,163,184,0.25); }
-  .nav-links.is-open { transform: translateY(0); opacity: 1; pointer-events:auto; }
-  .nav-toggle { display:block; }
-}
+/* --- AZ OLDAL TÖBBI RÉSZE (A meglévő, jól működő kódod) --- */
 
 .main { min-height: calc(100vh - 120px); }
 .section { padding: 3.5rem 1.25rem; }
@@ -340,13 +312,11 @@ ul { list-style: none; }
 
 /* --- EXTRA ANIMÁCIÓK ÉS HOVER EFFEKTEK --- */
 
-/* Lépcsőzetes (staggered) fade-in */
 .stagger-1 { transition-delay: 100ms; }
 .stagger-2 { transition-delay: 200ms; }
 .stagger-3 { transition-delay: 300ms; }
 .stagger-4 { transition-delay: 400ms; }
 
-/* Modern Card Hover: finom emelkedés és árnyék */
 .card-hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
@@ -358,7 +328,6 @@ ul { list-style: none; }
   border-color: rgba(59, 130, 246, 0.4);
 }
 
-/* Kártya bal oldali szín-csík hoverre (modern design elem) */
 .card-hover::before {
   content: '';
   position: absolute;
@@ -375,7 +344,6 @@ ul { list-style: none; }
   transform: scaleY(1);
 }
 
-/* Telepítési lépések (Process list) */
 .process-list {
   list-style: none;
   padding: 0;
@@ -413,7 +381,6 @@ ul { list-style: none; }
   margin: 0;
 }
 
-/* Nagyobb Grid a szolgáltatás szövegéhez */
 .service-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -424,7 +391,6 @@ ul { list-style: none; }
   .service-grid { grid-template-columns: 1fr; }
 }
 
-/* Információs dobozok a szövegbe ékelve */
 .info-box {
   background: #f8fafc;
   border-left: 4px solid var(--color-primary);
@@ -435,25 +401,15 @@ ul { list-style: none; }
   color: #334155;
 }
 
-/* Kártyákba ágyazott képek - Faltól falig (Full Width) */
 .card-image {
-  /* 
-     A card-nak 1.5rem paddingja van két oldalt. 
-     Tehát a szélesség = 100% + 1.5rem (bal) + 1.5rem (jobb) = 3rem.
-  */
   width: calc(100% + 3rem); 
   height: 240px;
   object-fit: cover;
-  
-  
   margin-top: -1.4rem;
   margin-left: -1.5rem;
   margin-right: -1.5rem;
   margin-bottom: 1.5rem; 
-
-  
   border-radius: 1rem 1rem 0 0; 
   display: block;
   max-width: none; 
 }
-
